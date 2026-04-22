@@ -44,33 +44,35 @@ function AddUser() {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{ backgroundColor: 'yellow', color: 'black' }}
         />
         <input
           type="text"
           placeholder="Phone Number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          style={{ backgroundColor: 'yellow', color: 'black' }}
         />
-        <button type="submit">رفع البيانات</button>
+        <button  type="submit">رفع البيانات</button>
       </form>
 
       <button onClick={handleShowData}>عرض البيانات</button>
 
       {showData && (
-        <table border="1" cellPadding="8" style={{ marginTop: '16px', borderCollapse: 'collapse' }}>
+        <table border="1" cellPadding="8" style={{ marginTop: '16px', borderCollapse: 'collapse', backgroundColor: 'yellow', color: 'black' }}>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Phone Number</th>
+              <th style={{ backgroundColor: 'yellow', color: 'black' }}>ID</th>
+              <th style={{ backgroundColor: 'yellow', color: 'black' }}>Name</th>
+              <th style={{ backgroundColor: 'yellow', color: 'black' }}>Phone Number</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.phone_number}</td>
+                <td style={{ backgroundColor: 'yellow', color: 'black' }}>{user.id}</td>
+                <td style={{ backgroundColor: 'yellow', color: 'black' }}>{user.name}</td>
+                <td style={{ backgroundColor: 'yellow', color: 'black' }}>{user.phone_number}</td>
               </tr>
             ))}
           </tbody>
