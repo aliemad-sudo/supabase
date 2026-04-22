@@ -1,65 +1,83 @@
-import { createClient } from '@supabase/supabase-js';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { supabase } from './supabase';
 
+function AddUser() {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [users, setUsers] = useState([]);
+  const [showData, setShowData] = useState(false);
 
-function SearchTask() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const handleInsert = async (e) => {
+    e.preventDefault();
 
-  const handleSearch = async () => {
-    setLoading(true);
-    
     const { data, error } = await supabase
       .from('users_data')
-      .select('*')
-      // 'phone_number' هو اسم العمود اللي بنسيرش فيه
-      // '%' بتخلي السيرش مرن (يجيب أي رقم يحتوي على اللي كتبته)
-      .ilike('phone_number', `%${searchTerm}%`);
+      .insert([{ name: name, phone_number: phone }]);
 
     if (error) {
-      console.error('Error fetching:', error);
+      console.error('Error inserting data:', error.message);
+      alert('error');
     } else {
-      setResults(data);
+      console.log('Data inserted successfully:', data);
+      alert('success');
+      setName('');
+      setPhone('');
     }
-    setLoading(false);
+  };
+
+  const handleShowData = async () => {
+    const { data, error } = await supabase.from('users_data').select('*');
+
+    if (error) {
+      console.error('Error fetching data:', error.message);
+    } else {
+      setUsers(data);
+      setShowData(true);
+    }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>search by num</h2>
-      
-      <input
-        type="text"
-        placeholder="writ num here.."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>search</button>
+    <div>
+      <form onSubmit={handleInsert}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <button type="submit">رفع البيانات</button>
+      </form>
 
-      {loading ? <p>loading...</p> : (
-        <ul>
-          {results.map((item) => (
-            <li key={item.id}>
-              {item.name} - {item.phone_number}
-            </li>
-          ))}
-        </ul>
+      <button onClick={handleShowData}>عرض البيانات</button>
+
+      {showData && (
+        <table border="1" cellPadding="8" style={{ marginTop: '16px', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.phone_number}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
 }
 
-export default SearchTask;
-
-
-
-
-
-
-
-
-function searchTask (){
-  const  [searchTerm,setSearchTerm ] = useState ("")
-}
+export default AddUser;
