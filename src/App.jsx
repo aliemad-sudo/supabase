@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from './supabase';
 import './App.css';
 
-const COMPETITION_DATE = new Date('2026-04-26T06:00:00');
+const COMPETITION_DATE = new Date('2026-04-26T18:00:00');
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({});
@@ -109,7 +109,7 @@ function AddUser() {
             </div>
           </div>
         )}
-        <p className="countdown-date">Sunday, April 26 · 2026 · 6:00 AM</p>
+        <p className="countdown-date">Sunday, April 26 · 2026 · 6:00 PM</p>
       </div>
 
       {/* ── Competition Details ── */}
