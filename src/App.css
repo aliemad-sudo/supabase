@@ -747,3 +747,81 @@
     gap: 4px;
   }
 }
+
+@media (max-width: 640px) {
+  .countdown-wrapper {
+    padding: 22px 14px;
+    margin-bottom: 28px;
+    border-radius: 14px;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    margin: 0 0 14px;
+  }
+
+  .countdown-grid {
+    gap: 4px;
+  }
+
+  .countdown-block {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 4px;
+    gap: 4px;
+    border-radius: 10px;
+  }
+
+  .countdown-num {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .countdown-unit {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown-sep {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .countdown-date {
+    font-size: 11px;
+    margin: 12px 0 0;
+  }
+
+  .countdown-done {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .countdown-wrapper {
+    padding: 18px 10px;
+  }
+
+  .countdown-grid {
+    gap: 2px;
+  }
+
+  .countdown-block {
+    padding: 8px 2px;
+  }
+
+  .countdown-num {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown-unit {
+    font-size: 8px;
+  }
+
+  .countdown-sep {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+}
